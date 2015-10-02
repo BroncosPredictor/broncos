@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array();
+$autoload['libraries'] = array('parser');
 
 /*
 | -------------------------------------------------------------------
@@ -83,7 +83,8 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array();
+$autoload['helper'] = array('url');
+
 
 /*
 | -------------------------------------------------------------------
@@ -126,4 +127,7 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array();
+$autoload['model'] = array('roster');
+
+/* End of file autoload.php */
+/* Location: ./application/config/autoload.php */
