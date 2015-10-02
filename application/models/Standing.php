@@ -1,11 +1,4 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Standing
  *
@@ -48,9 +41,49 @@ class Standing extends CI_Model
         array( 'id' => '32', 'code' => 'ARI', 'name' => 'Arizona Cardinals',    'conf' => 'NFC', 'group' => 'West',  'wins' => '3', 'loses' => '0', 'ties' => '0', 'netPts' => '77',  'touchdowns' => '17', 'streak' => '3W' )
     );
     
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
     
+    public function all()
+    {
+        return $this->data;
+    }
+    
+    public function get( $which )
+    {
+        foreach( $this->data as $record )
+            if( $record['id'] == $which )
+                return $record;
+        return null;
+    }
+    
+    public function getByConf( $conf )
+    {
+        $records = array();
+        foreach( $this->data as $record )
+            if( $record['conf'] == $conf )
+                $records[] = $record;
+        return $records;
+    }
+    
+    public function getByConfGroup( $conf, $group )
+    {
+        $records = array();
+        foreach( $this->data as $record )
+            if( $record['conf'] == $conf && $record['group'] == $group )
+                $records[] = $record;
+        return $records;
+    }
+    
+    public function getConferences()
+    {
+        return array( 'AFC', 'NFC' );
+    }
+    
+    public function getGroups()
+    {
+        return array( 'East', 'North', 'South', 'West' );
+    }
 }
