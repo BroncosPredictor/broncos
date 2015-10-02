@@ -1,25 +1,39 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+/**
+ * Our homepage. Show a table of all the author pictures. Clicking on one should show their quote.
+ * Our quotes model has been autoloaded, because we use it everywhere.
+ * 
+ * controllers/Welcome.php
+ *
+ * ------------------------------------------------------------------------
+ */
+class Welcome extends Application {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
-	{
-		$this->load->view('welcome_message');
-	}
+    function __construct() {
+        parent::__construct();
+    }
+
+    //-------------------------------------------------------------
+    //  The normal pages
+    //-------------------------------------------------------------
+
+    function index() {
+        $this->data['pagebody'] = 'homepage';    // this is the view we want shown
+        
+        $this->render();
+    }
+    
+    function shucks() {
+        $this->data['pagebody'] = 'justone';    // this is the view we want shown
+        // show the second quote author in the list
+        $source = $this->quotes->get('2');
+        $this->data += $source;
+
+        $this->render();
+    }
+
 }
+
+/* End of file Welcome.php */
+/* Location: application/controllers/Welcome.php */
