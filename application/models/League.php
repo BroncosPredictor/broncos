@@ -4,7 +4,7 @@
  *
  * @author Georgi
  */
-class Standing extends CI_Model
+class League extends CI_Model
 {
     var $data = array(
         array( 'id' => '1',  'code' => 'MIA', 'name' => 'Miami Dolphins',       'conf' => 'AFC', 'group' => 'East',  'wins' => '1', 'loses' => '2', 'ties' => '0', 'netPts' => '-23', 'touchdowns' => '6',  'streak' => '2L' ),
