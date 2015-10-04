@@ -19,6 +19,7 @@ class About extends Application {
     //-------------------------------------------------------------
 
     function index() {
+        $this->data['pageTitle'] = 'About';
         $this->data['pagebody'] = 'about';    // this is the view we want shown
         
         $this->render();
