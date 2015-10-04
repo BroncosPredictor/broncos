@@ -19,6 +19,7 @@ class Welcome extends Application {
     //-------------------------------------------------------------
 
     function index() {
+        $this->data['pageTitle'] = 'Home';
         $this->data['pagebody'] = 'homepage';    // this is the view we want shown
         
         $this->render();

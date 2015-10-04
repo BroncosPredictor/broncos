@@ -20,18 +20,22 @@ if (!defined('APPPATH'))
         <link rel="stylesheet" type="text/css" href="/assets/css/style.css"/>
     </head>
     <body>
+        <a class="brand" href="/"><img class="banner"src="/assets/images/banner.jpg"/></a>
         <div class="container">
+            
             <div class="navbar">
                 <div class="navbar-inner">
-                    <a class="brand" href="/"><img src="/assets/images/logo.png"/></a>
-                    {menubar} </div>
+                    <div class="mynav">
+                        {menubar}
+                    </div>
+                </div>
             </div>           
             <div id="content">
-                <h1>{title}</h1>
+                <h1 class="text-center">{pageTitle}</h1><br />
                 {content}
             </div>
             <div id="footer" class="span12">
-                Copyright &copy; 2015,  <a href="mailto:someone@somewhere.com">Me</a>.
+                Copyright &copy; 2015, Casey & Georgi.
             </div>
         </div>
         <script src="/assets/js/jquery-1.11.1.min.js"></script>

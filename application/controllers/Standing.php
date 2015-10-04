@@ -19,6 +19,7 @@ class Standing extends Application
     
     
     function index() {
+        $this->data['pageTitle'] = 'Standing';
         $this->data['pagebody'] = 'standing'; // show the standing view
         
         /* hardcoded array representation to help understand variable tag pairs structure

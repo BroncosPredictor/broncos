@@ -1,9 +1,8 @@
 <div class="row">
-    <div class="span3"><img src="/data/{mug}" title="{who}"/></div>
-    <div class="span8 offset1">
-        <p class="lead">#{num}</p><br/>
-        <p class="lead">{who}</p><br/>
-        <p class="lead">{pos}</p><br/>
-        <p class="lead">{age}</p><br/>
+    <div class="span4 text-right"><img src="/data/{mug}" title="{who}"/></div>
+    <div class="span7 offset1">
+        <p class="lead">Position: {pos}</p>
+        <p class="lead">Age: {age}</p>
+        <p><a href='/roster'> << Back to Roster</a></p>
     </div>
 </div>

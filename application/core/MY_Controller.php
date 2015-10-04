@@ -26,7 +26,7 @@ class Application extends CI_Controller {
         $this->data = array();
         $this->data['title'] = 'Denver Broncos';    // our default title
         $this->errors = array();
-        $this->data['pageTitle'] = 'home';   // our default page
+        $this->data['pageTitle'] = '';   // our default page
     }
 
     /**

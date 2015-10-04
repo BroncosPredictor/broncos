@@ -19,6 +19,7 @@ class Roster extends Application {
     //-------------------------------------------------------------
 
     function index() {
+        $this->data['pageTitle'] = 'Roster';
         $this->data['pagebody'] = 'roster';    // this is the view we want shown
         // build the list of authors, to pass on to our view
         $source = $this->players->all();
@@ -38,6 +39,8 @@ class Roster extends Application {
         $source = $this->players->get($id);
         $this->data += $source;
 
+        $this->data['pageTitle'] = '#' . $source['num'] . ': ' . $source['who'];
+        
         $this->render();
     }
 
