@@ -7,7 +7,7 @@
  * @author casey
  */
 
-class Roster extends CI_Model {
+class Players extends CI_Model {
     
     // The data comes from http://www.denverbroncos.com/team/roster.html
     var $data = array(
@@ -38,6 +38,11 @@ class Roster extends CI_Model {
         parent::__construct();
     }
     
+    // retrieve the entire roster
+    public function all() {
+        return $this->data;
+    }
+    
     // retrieve a specific player
     public function get($which) {
         // iterate over the data until we find the one we want
@@ -46,10 +51,5 @@ class Roster extends CI_Model {
                 return $record;
         return null;
     }
-    
-    // retrieve the entire roster
-    public function all() {
-        return $this->data;
-    }
-    
+
 }

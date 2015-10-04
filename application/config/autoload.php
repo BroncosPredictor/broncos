@@ -127,7 +127,7 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('roster','league');
+$autoload['model'] = array('players', 'league');
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */
