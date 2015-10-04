@@ -1,31 +1,23 @@
 <?php
 
 /**
- * Our homepage. Show a table of all the author pictures. Clicking on one should show their quote.
- * Our quotes model has been autoloaded, because we use it everywhere.
- * 
- * controllers/Welcome.php
+ * Description of Homepage
  *
- * ------------------------------------------------------------------------
+ * @author Casey
  */
+
 class Welcome extends Application {
 
     function __construct() {
         parent::__construct();
     }
 
-    //-------------------------------------------------------------
-    //  The normal pages
-    //-------------------------------------------------------------
-
+    
     function index() {
-        $this->data['pageTitle'] = 'Home';
-        $this->data['pagebody'] = 'homepage';    // this is the view we want shown
+        $this->data['pageTitle'] = 'Home'; // use the home page title
+        $this->data['pagebody'] = 'homepage'; // show the homepage view
         
         $this->render();
     }
 
 }
-
-/* End of file Welcome.php */
-/* Location: application/controllers/Welcome.php */
