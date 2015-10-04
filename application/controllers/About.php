@@ -1,12 +1,9 @@
 <?php
 
 /**
- * Our homepage. Show a table of all the author pictures. Clicking on one should show their quote.
- * Our quotes model has been autoloaded, because we use it everywhere.
- * 
- * controllers/About.php
+ * Description of About
  *
- * ------------------------------------------------------------------------
+ * @author Casey
  */
 class About extends Application {
 
@@ -14,9 +11,6 @@ class About extends Application {
         parent::__construct();
     }
 
-    //-------------------------------------------------------------
-    //  The normal pages
-    //-------------------------------------------------------------
 
     function index() {
         $this->data['pageTitle'] = 'About';
@@ -26,6 +20,3 @@ class About extends Application {
     }
 
 }
-
-/* End of file Welcome.php */
-/* Location: application/controllers/Welcome.php */

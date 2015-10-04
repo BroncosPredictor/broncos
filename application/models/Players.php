@@ -4,7 +4,7 @@
  * This is a "CMS" model for the Denver Broncos roster, but with  
  * hard-coded data, so that we don't have to worry about any database setup.
  *
- * @author casey
+ * @author Casey
  */
 
 class Players extends CI_Model {

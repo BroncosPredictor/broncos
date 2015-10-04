@@ -1,27 +1,21 @@
 <?php
 
 /**
- * Our homepage. Show a table of all the author pictures. Clicking on one should show their quote.
- * Our quotes model has been autoloaded, because we use it everywhere.
- * 
- * controllers/Welcome.php
+ * Description of Standing
  *
- * ------------------------------------------------------------------------
+ * @author Casey
  */
 class Roster extends Application {
 
     function __construct() {
         parent::__construct();
     }
-
-    //-------------------------------------------------------------
-    //  The normal pages
-    //-------------------------------------------------------------
-
+    
+    
     function index() {
-        $this->data['pageTitle'] = 'Roster';
-        $this->data['pagebody'] = 'roster';    // this is the view we want shown
-        // build the list of authors, to pass on to our view
+        $this->data['pageTitle'] = 'Roster'; // use the roster page title
+        $this->data['pagebody'] = 'roster'; // show the roster view
+        // build the list of players to pass to the view
         $source = $this->players->all();
         $players = array();
         foreach ($source as $record) {
@@ -29,22 +23,20 @@ class Roster extends Application {
         }
         $this->data['players'] = $players;
         
-        
         $this->render();
     }
     
+    // get a player based on id
     function gimme($id) {
         $this->data['pagebody'] = 'player';    // this is the view we want shown
-        // show the author specified by gimme/$id
+        // show the player specified by gimme/$id
         $source = $this->players->get($id);
         $this->data += $source;
 
+        // creates the specific pageTitle for the player
         $this->data['pageTitle'] = '#' . $source['num'] . ': ' . $source['who'];
         
         $this->render();
     }
 
 }
-
-/* End of file Welcome.php */
-/* Location: application/controllers/Welcome.php */
