@@ -22,6 +22,10 @@ class Roster extends Application {
     function index() {
         $this->data['pageTitle'] = 'Roster'; // use the roster page title
         
+        // create pagination
+        
+        $this->data['pagination'] = $this->pagination->create_links();
+        
         // retreive session variable for layout of roster
         $layout = $this->session->userdata("rosterLayout");
            

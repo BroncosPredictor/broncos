@@ -20,3 +20,6 @@
         <p>#{num}: {name}</p></div>
     {/players}
 </div>
+<div class="row">
+    {pagination}
+</div>
