@@ -22,10 +22,17 @@ class Roster extends Application {
     function index() {
         $this->data['pageTitle'] = 'Roster'; // use the roster page title
         
-        // retreive session variable for ordering the roster
+        // retreive session variable for layout of roster
         $layout = $this->session->userdata("rosterLayout");
            
+        // set layout based on session variable
         $this->layout($layout);
+        
+        // retreive session variable for ordering the roster
+        $order = $this->session->userdata("rosterOrder");
+        
+        // set order based on session variable
+        $this->order($order);
         
         // build the list of players to pass to the view
         $source = $this->players->all();
@@ -43,7 +50,6 @@ class Roster extends Application {
         
         $this->render();
         
-        echo $this->pagination->create_links();
     }
     
     // get a player based on id
@@ -83,6 +89,22 @@ class Roster extends Application {
         }
         else {
             $this->data['pagebody'] = 'rosterGallery'; // show the gallery view by default
+        }
+    }
+    
+    // display roster in order based on session variable value
+    function order($param) {
+        if ($param == "name") {
+            // show roster ordered by name
+        }
+        else if ($param == "num") {
+            // show roster ordered by jersey
+        }
+        else if ($param == "pos") {
+            // show roster ordered by position
+        }
+        else {
+            // show roster ordered by name by default
         }
     }
 

@@ -8,8 +8,8 @@
         <select name="order">
             <option value="">Select an order</option>
             <option value="name">Name</option>
-            <option value="number">Jersey Number</option>
-            <option value="number">Position</option>
+            <option value="num">Jersey Number</option>
+            <option value="pos">Position</option>
         </select>
         <input type="submit" value="Go!" />
     </form>
