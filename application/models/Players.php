@@ -7,9 +7,10 @@
  * @author Casey
  */
 
-class Players extends CI_Model {
+class Players extends MY_Model {
     
     // The data comes from http://www.denverbroncos.com/team/roster.html
+    /*
     var $data = array(
         array('id' => '1', 'who' => 'Anderson, C.J.', 'mug' => 'anderson.png', 'num'=> '22', 'pos' => 'RB', 'age' => '24'),
         array('id' => '2', 'who' => 'Anunike, Kenny', 'mug' => 'anunike.png', 'num'=> '91', 'pos' => 'DE', 'age' => '25'),
@@ -31,18 +32,19 @@ class Players extends CI_Model {
         array('id' => '18', 'who' => 'Harris, Ryan', 'mug' => 'harris.png', 'num'=> '68', 'pos' => 'T', 'age' => '30'),
         array('id' => '19', 'who' => 'Henry, Mitchell', 'mug' => 'henry.png', 'num'=> '84', 'pos' => 'TE', 'age' => '22'),
         array('id' => '20', 'who' => 'Hillman, Ronnie', 'mug' => 'hillman.png', 'num'=> '23', 'pos' => 'RB', 'age' => '24'),
-    );
+    );*/
     
     // Constructor
     public function __construct() {
-        parent::__construct();
+        parent::__construct('players', 'id');
     }
-    
+    /*
     // retrieve the entire roster
     public function all() {
         return $this->data;
     }
-    
+    */
+    /*
     // retrieve a specific player
     public function get($which) {
         // iterate over the data until we find the one we want
@@ -51,5 +53,5 @@ class Players extends CI_Model {
                 return $record;
         return null;
     }
-
+    */
 }

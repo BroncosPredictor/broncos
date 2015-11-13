@@ -58,7 +58,7 @@ $autoload['packages'] = array(APPPATH . 'third_party');
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('parser');
+$autoload['libraries'] = array('parser','session');
 
 /*
 | -------------------------------------------------------------------
@@ -73,7 +73,7 @@ $autoload['libraries'] = array('parser');
 |
 |	$autoload['drivers'] = array('cache');
 */
-$autoload['drivers'] = array('session');
+$autoload['drivers'] = array();
 
 /*
 | -------------------------------------------------------------------
@@ -83,7 +83,7 @@ $autoload['drivers'] = array('session');
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('common', 'url');
+$autoload['helper'] = array('common', 'url', 'form');
 
 
 /*
