@@ -34,3 +34,6 @@
         {/players}
     </table>
 </div>
+<div class="row">
+    {pagination}
+</div>
