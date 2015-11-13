@@ -35,36 +35,25 @@ class Roster extends Application {
         $this->order($order);
         
         // build the list of players to pass to the view
-        /*$source = $this->players->all();
-        $players = array();
-        foreach ($source as $record) {
-            $players[] = array(
-                'id' => $record['id'], 
-                'who' => $record['who'], 
-                'mug' => $record['mug'], 
-                'num' => $record['num'],
-                'pos' => $record['pos'],
-                'age' => $record['age']);
-        }*/
         $this->data['players'] = $this->players->all();
         
         $this->render();
         
     }
-    /*
+    
     // get a player based on id
     function gimme($id) {
         $this->data['pagebody'] = 'player';    // this is the view we want shown
+        
         // show the player specified by gimme/$id
-        $source = $this->players->get($id, null);
-        $this->data += $source;
+        $this->data = array_merge($this->data, (array) $this->players->get($id));
 
         // creates the specific pageTitle for the player
-        $this->data['pageTitle'] = '#' . $source['num'] . ': ' . $source['who'];
+        $this->data['pageTitle'] = '#' . $this->data['num'] . ': ' . $this->data['name'];
         
         $this->render();
     }
-    */
+    
     // called by the selection form on the roster page
     function setSession() {
         
