@@ -86,18 +86,22 @@ class Roster extends Application {
     }
     
     // display roster in order based on session variable value
-    function order($param) {
-        if ($param == "name") {
+    function order($order) {
+        if ($order == "name") {
             // show roster ordered by name
+            $this->db->order_by($order, "asc");
         }
-        else if ($param == "num") {
+        else if ($order == "num") {
             // show roster ordered by jersey
+            $this->db->order_by($order, "asc");
         }
-        else if ($param == "pos") {
+        else if ($order == "pos") {
             // show roster ordered by position
+            $this->db->order_by($order, "asc");
         }
         else {
             // show roster ordered by name by default
+            $this->db->order_by("name", "asc");
         }
     }
 
