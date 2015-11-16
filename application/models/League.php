@@ -4,7 +4,7 @@
  *
  * @author Georgi
  */
-class League extends CI_Model
+class League extends MY_Model
 {
     var $data = array(
         array( 'id' => '1',  'code' => 'MIA', 'name' => 'Miami Dolphins',       'conf' => 'AFC', 'group' => 'East',  'wins' => '1', 'loses' => '2', 'ties' => '0', 'netPts' => '-23', 'touchdowns' => '6',  'streak' => '2L' ),
@@ -46,24 +46,12 @@ class League extends CI_Model
         parent::__construct();
     }
     
-    public function all()
-    {
-        return $this->data;
-    }
-    
-    public function get( $which )
-    {
-        foreach( $this->data as $record )
-            if( $record['id'] == $which )
-                return $record;
-        return null;
-    }
     
     public function getByConf( $conf )
     {
         $records = array();
-        foreach( $this->data as $record )
-            if( $record['conf'] == $conf )
+        foreach( $this->all() as $record )
+            if( $record->conf == $conf )
                 $records[] = $record;
         return $records;
     }
@@ -71,8 +59,8 @@ class League extends CI_Model
     public function getByConfGroup( $conf, $group )
     {
         $records = array();
-        foreach( $this->data as $record )
-            if( $record['conf'] == $conf && $record['group'] == $group )
+        foreach( $this->all() as $record )
+            if( $record->conf == $conf && $record->div == $group )
                 $records[] = $record;
         return $records;
     }
