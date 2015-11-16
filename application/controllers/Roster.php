@@ -39,13 +39,27 @@ class Roster extends Application {
         $players = array();
         foreach ($source as $record) {
             $players[] = array(
-                'id' => $record['id'], 
+                'id' => ( $_SESSION[ 'editing' ] ? 'edit/' : '' ).$record['id'], 
                 'who' => $record['who'], 
                 'mug' => $record['mug'], 
                 'num' => $record['num'],
                 'pos' => $record['pos'],
                 'age' => $record['age']);
         }
+        
+        // Add 'new player' card if in editing mode
+        if( $_SESSION[ 'editing' ] )
+        {
+            $players[] = array(
+                  'id' => 'new'
+                , 'who' => 'Add new Player'
+                , 'mug' => 'new-player.png'
+                , 'num' => ''
+                , 'pos' => ''
+                , 'age' => ''
+            );      
+        }
+        
         $this->data['players'] = $players;
         
         $this->render();

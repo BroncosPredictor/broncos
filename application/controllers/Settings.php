@@ -17,7 +17,7 @@ class Settings extends Application {
         $this->data['pageTitle'] = 'Settings';
         $this->data['pagebody'] = 'settings';
         
-        if( $this->session->userdata( 'editing' ) == 'true' )
+        if( $_SESSION['editing'] )
         {
             $this->data['editStatus'] = 'Enabled';
             $this->data['editToggle'] = 'Disable';
@@ -33,9 +33,9 @@ class Settings extends Application {
     
     function editToggle( $newStatus )
     {
-        $this->session->set_userdata( 'editing', $newStatus == 'Enable' ? 'true' : 'false' );
+        $_SESSION['editing'] = $newStatus == 'Enable' ? true : false ;
         
-        redirect('/settings');
+        $this->index();
     }
 
 }
