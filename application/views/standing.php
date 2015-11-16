@@ -1,6 +1,7 @@
-<table class="table table-condensed">
+<table class="table table-condensed leagueTable">
     <thead>
         <tr>
+            <th>Logo</th>
             <th>Name</th>
             <th>Wins</th>
             <th>Loses</th>
@@ -17,6 +18,7 @@
         <tr><td colspan="7"><h6>{group}</h6></td></tr>
         {teams}
         <tr>
+            <td><img src="/data/{code}" title="{code}"/></td>
             <td>{name}</td>
             <td>{wins}</td>
             <td>{loses}</td>

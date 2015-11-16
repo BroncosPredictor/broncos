@@ -13,6 +13,9 @@
         </select>
         <input type="submit" value="Go!" id="filterGo" />
     </form>
+    <div style="display: {displayAddBtn};" >
+        <a href="/player/new" class="btn addButton" role="button">New Player</a>
+    </div>
 </div>
 <div class="row text-center">
     <table class="table table-condensed rosterTable">
@@ -40,7 +43,4 @@
 </div>
 <div class="row text-center pagination">
     {pagination}
-</div>
-<div class="row" style="display: {displayAddBtn};" >
-    <a href="/player/new" class="btn btn-info" role="button">New Player</a>
 </div>
