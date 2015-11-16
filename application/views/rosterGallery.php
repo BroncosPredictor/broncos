@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row text-center">
     <form action="/roster/setSession" method="post">
         <select name="layout">
             <option value="">Select a layout</option>
@@ -11,7 +11,7 @@
             <option value="num">Jersey Number</option>
             <option value="pos">Position</option>
         </select>
-        <input type="submit" value="Go!" />
+        <input type="submit" value="Go!" id="filterGo" />
     </form>
 </div>
 <div class="row">
@@ -20,7 +20,7 @@
         <p>#{num}: {name}</p></div>
     {/players}
 </div>
-<div class="row">
+<div class="row text-center">
     {pagination}
 </div>
 <div class="row" style="display: {displayAddBtn};" >

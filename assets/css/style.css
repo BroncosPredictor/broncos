@@ -4,9 +4,21 @@ body {}
 #footer { font-size: small; font-style: italic; text-align: center; }
 .row>div { margin-bottom: 30px; }
 
+a { color: navy; }
+a:hover { color: orangered; }
+
 .banner { width: 100%; }
 .navbar-inner { margin: 20px 0; padding: 20px; min-height: 0; text-align: center; }
 .mynav ul { display: inline-block; list-style-type:none; margin: 0;font-size: 120%; }
 .mynav ul li { text-align:center; float:left;margin-right:15px;color:white;list-style-type:none; }
 .mynav a { text-decoration:none;color:navy; font-weight:bold; }
 .mynav a:hover  { color: orangered; }
+
+.pagination { margin: 30px 0; }
+.pagination a, .pagination strong { padding: 5px; }
+
+.rosterTable td { vertical-align: middle; }
+.rosterTable img { width: 75px; }
+
+#filterGo { margin-bottom: 10px; border: 0px solid; border-radius: 5px; background-color: navy; color: white; }
+#filterGo:hover { background-color: orangered; }
