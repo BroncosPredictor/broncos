@@ -9,18 +9,36 @@ class Roster extends Application {
 
     function __construct() {
         parent::__construct();
-        $this->load->library('pagination');
-        
-        $config['base_url'] = 'http://comp4711.local/roster/';
-        $config['total_rows'] = 25;
-        $config['per_page'] = 12;
-
-        $this->pagination->initialize($config);
-       
     }
     
     function index() {
+        
+        $this->pagination();
+    }
+    
+    function pagination($num = 1) {
+        
+        $this->load->library('pagination');
+        
+        $config = array();
+        $config['base_url'] = base_url() . 'roster/page';
+        $config['total_rows'] = $this->players->size();
+        $config['per_page'] = 12;
+        $config['use_page_numbers']  = TRUE;
+        $config['page_query_string'] = FALSE;
+
+        $config['first_link'] = 'First';
+        $config['last_link'] = 'Last';
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Previous';
+
+        $this->pagination->initialize($config);
+        
         $this->data['pageTitle'] = 'Roster'; // use the roster page title
+        
+        // create pagination
+        
+        $this->data['pagination'] = $this->pagination->create_links();
         
         // retreive session variable for layout of roster
         $layout = $this->session->userdata("rosterLayout");
@@ -33,6 +51,7 @@ class Roster extends Application {
         
         // set order based on session variable
         $this->order($order);
+/*
         
         // build the list of players to pass to the view
         $source = $this->players->all();
@@ -61,6 +80,10 @@ class Roster extends Application {
         }
         
         $this->data['players'] = $players;
+*/
+       
+        // build the list of players to pass to the view, with pagination
+        $this->data['players'] = $this->players->get_data($num);
         
         $this->render();
         
@@ -69,12 +92,12 @@ class Roster extends Application {
     // get a player based on id
     function gimme($id) {
         $this->data['pagebody'] = 'player';    // this is the view we want shown
+        
         // show the player specified by gimme/$id
-        $source = $this->players->get($id);
-        $this->data += $source;
+        $this->data = array_merge($this->data, (array) $this->players->get($id));
 
         // creates the specific pageTitle for the player
-        $this->data['pageTitle'] = '#' . $source['num'] . ': ' . $source['who'];
+        $this->data['pageTitle'] = '#' . $this->data['num'] . ': ' . $this->data['name'];
         
         $this->render();
     }
@@ -107,18 +130,22 @@ class Roster extends Application {
     }
     
     // display roster in order based on session variable value
-    function order($param) {
-        if ($param == "name") {
+    function order($order) {
+        if ($order == "name") {
             // show roster ordered by name
+            $this->db->order_by($order, "asc");
         }
-        else if ($param == "num") {
+        else if ($order == "num") {
             // show roster ordered by jersey
+            $this->db->order_by($order, "asc");
         }
-        else if ($param == "pos") {
+        else if ($order == "pos") {
             // show roster ordered by position
+            $this->db->order_by($order, "asc");
         }
         else {
             // show roster ordered by name by default
+            $this->db->order_by("name", "asc");
         }
     }
 

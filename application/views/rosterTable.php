@@ -27,10 +27,13 @@
         <tr>
             <td><img src="/data/{mug}" title="{who}"/></td>
             <td>#{num}</td>
-            <td><a href="/player/{id}">{who}</a></td>
+            <td><a href="/player/{id}">{name}</a></td>
             <td>{pos}</td>
             <td>{age}</td>
         </tr>
         {/players}
     </table>
+</div>
+<div class="row">
+    {pagination}
 </div>
