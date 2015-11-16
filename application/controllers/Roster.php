@@ -51,6 +51,8 @@ class Roster extends Application {
         
         // set order based on session variable
         $this->order($order);
+        
+        $this->data['displayAddBtn'] = $_SESSION['editing'] == 'true' ? 'inline' : 'none';
 /*
         
         // build the list of players to pass to the view
@@ -84,6 +86,11 @@ class Roster extends Application {
        
         // build the list of players to pass to the view, with pagination
         $this->data['players'] = $this->players->get_data($num);
+        foreach( $this->data['players'] as $player )
+        {
+            $player->edit = $_SESSION['editing'] == 'true' ? 'edit/' : '';
+        }
+        
         
         $this->render();
         

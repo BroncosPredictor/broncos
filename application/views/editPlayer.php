@@ -8,13 +8,15 @@
 
 <div class="row">
 
-    <div class="span4 text-right"><img src="/data/{mug}" title="Add image"/>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="span4 text-right"><img src="/data/new-player.png" title="Add image"/>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
     </div>
     <form role="form" action="/playerCRUD/submit" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="pos">Mug shot:</label>
-            <input type="file" id="mug" name="mug">
+            <label for="mug">Mug shot:</label>
+            <input type="file" id="mug" name="userfile">
         </div>
         <div class="form-group">
             <label for="name">Name:</label>
@@ -50,6 +52,7 @@
         </div>
         <input type="hidden" name="isNew" value="{isNew}">
         <input type="hidden" name="id" value="{id}">
+        <input type="hidden" name="mug" value="{mug}">
         <button type="submit" class="btn btn-default" name="submit" value="cancel">Cancel</button>
         <button type="submit" class="btn btn-default" name="submit" value="save">Save</button>
         <button type="submit" class="btn btn-default" name="submit" value="delete" {deleteDisable}>Delete</button>
