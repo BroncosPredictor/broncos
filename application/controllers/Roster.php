@@ -9,17 +9,31 @@ class Roster extends Application {
 
     function __construct() {
         parent::__construct();
-        $this->load->library('pagination');
-        
-        $config['base_url'] = 'http://comp4711.local/roster/';
-        $config['total_rows'] = 25;
-        $config['per_page'] = 12;
-
-        $this->pagination->initialize($config);
-       
     }
     
     function index() {
+        
+        $this->pagination();
+    }
+    
+    function pagination($num = 1) {
+        
+        $this->load->library('pagination');
+        
+        $config = array();
+        $config['base_url'] = base_url() . 'roster/page';
+        $config['total_rows'] = $this->players->size();
+        $config['per_page'] = 12;
+        $config['use_page_numbers']  = TRUE;
+        $config['page_query_string'] = FALSE;
+
+        $config['first_link'] = 'First';
+        $config['last_link'] = 'Last';
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Previous';
+
+        $this->pagination->initialize($config);
+        
         $this->data['pageTitle'] = 'Roster'; // use the roster page title
         
         // create pagination
@@ -37,9 +51,9 @@ class Roster extends Application {
         
         // set order based on session variable
         $this->order($order);
-        
-        // build the list of players to pass to the view
-        $this->data['players'] = $this->players->all();
+       
+        // build the list of players to pass to the view, with pagination
+        $this->data['players'] = $this->players->get_data($num);
         
         $this->render();
         
