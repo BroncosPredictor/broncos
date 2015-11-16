@@ -53,7 +53,7 @@ class Roster extends Application {
         $this->order($order);
        
         // build the list of players to pass to the view, with pagination
-        $this->data['players'] = $this->players->get_data($num);
+        $this->data['players'] = $this->players->get_pagination($num);
         
         $this->render();
         

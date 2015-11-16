@@ -22,7 +22,7 @@ class Players extends MY_Model {
     }
     
     // gets the data for each page number, checks that the count of each page is above 0
-    public function get_data($page){   
+    public function get_pagination($page){   
         $query = $this->getPage($page - 1);
         
         if (count($query) > 0) {
