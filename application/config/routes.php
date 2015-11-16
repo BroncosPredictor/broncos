@@ -52,6 +52,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// CRUD routes
+$route['player/edit/(:num)'] = 'playerCRUD/editPlayer/$1';
+$route['player/new'] = 'playerCRUD/newPlayer';
+
 // individual player routes
 $route['player/(\d*)'] = 'roster/gimme/$1';
 // pagination routes

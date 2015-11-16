@@ -30,7 +30,7 @@
             <tr>
                 <td><img src="/data/{mug}" title="{who}"/></td>
                 <td>#{num}</td>
-                <td><a href="/player/{id}">{name}</a></td>
+                <td><a href="/player/{edit}{id}">{name}</a></td>
                 <td>{pos}</td>
                 <td>{age}</td>
             </tr>
@@ -40,4 +40,7 @@
 </div>
 <div class="row text-center pagination">
     {pagination}
+</div>
+<div class="row" style="display: {displayAddBtn};" >
+    <a href="/player/new" class="btn btn-info" role="button">New Player</a>
 </div>
