@@ -50,7 +50,7 @@ class PlayerCRUD extends Application {
         }
         else
         {
-            $explodedPos = explode( '/', strtoupper( $_SESSION['playerEditData']->pos ) );
+            $explodedPos = explode( '/', strtoupper( $_SESSION['playerEditData']['pos'] ) );
             $pos = trim( $explodedPos[0] );
             $auxPos = isset( $explodedPos[1] ) ? trim( $explodedPos[1] ) : 'none';
         }
@@ -98,7 +98,7 @@ class PlayerCRUD extends Application {
         }
         else
         {
-            $this->data = ( (array) $_SESSION['playerEditData'] ) + $this->data;
+            $this->data = $_SESSION['playerEditData'] + $this->data;
         }
         
         $this->index();
@@ -114,11 +114,11 @@ class PlayerCRUD extends Application {
         
         if( !isset( $_SESSION['playerEditData'] ) )
         {
-            $_SESSION['playerEditData'] = $this->players->get( $id );
+            $_SESSION['playerEditData'] = (array) $this->players->get( $id );
         }
         
-        $this->data = ( (array) $_SESSION['playerEditData'] ) + $this->data;
-        $this->data['who'] = $_SESSION['playerEditData']->name;
+        $this->data = $_SESSION['playerEditData'] + $this->data;
+        $this->data['who'] = $_SESSION['playerEditData']['name'];
         
         $this->index();
     }
@@ -190,6 +190,7 @@ class PlayerCRUD extends Application {
             (
                 'id' => $this->input->post('id')
               , 'who' => $this->input->post('name')
+              , 'name' => $this->input->post('name')
               , 'num' => $this->input->post('num')
               , 'pos' => $this->input->post('pos')
               , 'age' => $this->input->post('age')
@@ -257,7 +258,9 @@ class PlayerCRUD extends Application {
         }
         else if( $this->input->post('submit') == 'delete' )
         {
-            $this->data['pageTitle'] = 'Delete';
+            $this->players->delete( $_SESSION['playerEditData']->id );
+            unset( $_SESSION['playerEditData'] );
+            redirect('/roster');
         }
         else if( $this->input->post('submit') == 'cancel' )
         {

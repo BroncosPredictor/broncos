@@ -52,6 +52,9 @@ class Roster extends Application {
         // set order based on session variable
         $this->order($order);
         
+        // reset transfer buffer
+        unset( $_SESSION['playerEditData'] );
+        
         $this->data['displayAddBtn'] = $_SESSION['editing'] == 'true' ? 'inline' : 'none';
 /*
         
