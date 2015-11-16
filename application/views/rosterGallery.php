@@ -13,16 +13,16 @@
         </select>
         <input type="submit" value="Go!" id="filterGo" />
     </form>
+    <div style="display: {displayAddBtn};" >
+        <a href="/player/new" class="btn addButton" role="button">New Player</a>
+    </div>
 </div>
 <div class="row">
     {players}
     <div class="span4 text-center"><a href="/player/{edit}{id}"><img src="/data/{mug}" title="{who}"/></a><br />
-        <p>#{num}: {name}</p></div>
+        <p>#{num}: {name}<br/>{pos}</p></div>
     {/players}
 </div>
-<div class="row text-center">
+<div class="row text-center pagination">
     {pagination}
-</div>
-<div class="row" style="display: {displayAddBtn};" >
-    <a href="/player/new" class="btn btn-info" role="button">New Player</a>
 </div>
