@@ -73,7 +73,7 @@ $autoload['libraries'] = array('parser','session');
 |
 |	$autoload['drivers'] = array('cache');
 */
-$autoload['drivers'] = array();
+$autoload['drivers'] = array('session');
 
 /*
 | -------------------------------------------------------------------
