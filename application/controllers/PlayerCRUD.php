@@ -196,6 +196,8 @@ class PlayerCRUD extends Application {
               , 'age' => $this->input->post('age')
             );
             
+            $this->security->xss_clean( $_SESSION['playerEditData'] );
+            
             $config['upload_path'] = './data/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '10000';
