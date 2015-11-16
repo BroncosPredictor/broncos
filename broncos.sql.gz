@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 13, 2015 at 12:39 AM
+-- Generation Time: Nov 16, 2015 at 04:35 AM
 -- Server version: 5.6.23
 -- PHP Version: 5.5.29
 
@@ -34,6 +34,23 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
   `data` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `ci_sessions`
+--
+
+INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('179c072a5557e50ac0897f46fdba2d45c05ac2ee', '127.0.0.1', 1447632634, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373633323435343b726f737465724c61796f75747c733a373a2267616c6c657279223b726f737465724f726465727c733a343a226e616d65223b),
+('1bfaaa02c7a7c99ccfbac49de0685bcfc7fb9b26', '127.0.0.1', 1447634571, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373633343537313b726f737465724c61796f75747c733a303a22223b726f737465724f726465727c733a333a22706f73223b),
+('27bea6460375a0a38a7fd7aa20b77000a6a8d9d9', '127.0.0.1', 1447630684, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373633303632303b726f737465724c61796f75747c733a373a2267616c6c657279223b726f737465724f726465727c733a343a226e616d65223b),
+('2b41c81a2032bd08657cea036285a0981d94d27a', '127.0.0.1', 1447633549, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373633333530343b726f737465724c61796f75747c733a303a22223b726f737465724f726465727c733a333a226e756d223b),
+('3c88dd1d28cf5eb6aa0235bfd975b60e71c09eda', '127.0.0.1', 1447634167, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373633333930393b726f737465724c61796f75747c733a303a22223b726f737465724f726465727c733a333a22706f73223b),
+('4f8fe55c015500098c5eb9a7b91580543857b1ca', '127.0.0.1', 1447631547, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373633313436333b726f737465724c61796f75747c733a373a2267616c6c657279223b726f737465724f726465727c733a343a226e616d65223b),
+('907e7e8b7dd58c67b4d52fbbc9d1b855e9fed320', '127.0.0.1', 1447631459, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373633313136303b726f737465724c61796f75747c733a373a2267616c6c657279223b726f737465724f726465727c733a343a226e616d65223b),
+('b29329ae1b34f2e578f7dc03bed96ee840352bd0', '127.0.0.1', 1447631910, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373633313737373b726f737465724c61796f75747c733a373a2267616c6c657279223b726f737465724f726465727c733a343a226e616d65223b),
+('c92f1c7568277d16147ae99739eeb0d4db49ff61', '127.0.0.1', 1447629876, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373632393830333b726f737465724c61796f75747c733a373a2267616c6c657279223b726f737465724f726465727c733a343a226e616d65223b),
+('cbd76ca2457095b01ee7b39851bb4a6caa56dfa3', '127.0.0.1', 1447627746, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373632373638373b726f737465724c61796f75747c733a373a2267616c6c657279223b726f737465724f726465727c733a343a226e616d65223b),
+('ea0956757269fba8adc1b2c8060062f4baa99cd8', '127.0.0.1', 1447632407, 0x5f5f63695f6c6173745f726567656e65726174657c693a313434373633323134383b726f737465724c61796f75747c733a373a2267616c6c657279223b726f737465724f726465727c733a343a226e616d65223b);
+
 -- --------------------------------------------------------
 
 --
@@ -52,47 +69,46 @@ CREATE TABLE IF NOT EXISTS `league` (
   `ties` int(11) NOT NULL,
   `netPts` int(11) NOT NULL,
   `touchdowns` int(11) NOT NULL,
-  `streak` varchar(3) NOT NULL,
-  `mug` varchar(64) NOT NULL
+  `streak` varchar(3) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `league`
 --
 
-INSERT INTO `league` (`id`, `code`, `name`, `conf`, `div`, `wins`, `loses`, `ties`, `netPts`, `touchdowns`, `streak`, `mug`) VALUES
-(1, 'NE', 'New England Patriots', 'AFC', 'East', 8, 0, 0, 133, 31, '8W', ''),
-(2, 'NYJ', 'New York Jets', 'AFC', 'East', 5, 3, 0, 38, 23, '1W', ''),
-(3, 'BUF', 'Buffalo Bills', 'AFC', 'East', 4, 4, 0, 19, 26, '1W', ''),
-(4, 'MIA', 'Miami Dolphins', 'AFC', 'East', 3, 5, 0, -35, 22, '2L', ''),
-(5, 'CIN', 'Cincinnati Bengals', 'AFC', 'North', 8, 0, 0, 87, 28, '8W', ''),
-(6, 'PIT', 'Pittsburgh Steelers', 'AFC', 'North', 5, 4, 0, 87, 28, '8W', ''),
-(7, 'BAL', 'Baltimore Ravens', 'AFC', 'North', 2, 6, 0, -24, 19, '1W', ''),
-(8, 'CLE', 'Cleveland Browns', 'AFC', 'North', 2, 7, 0, -70, 19, '4L', ''),
-(9, 'IND', 'Indianapolis Colts', 'AFC', 'South', 4, 5, 0, -27, 24, '1W', ''),
-(10, 'HOU', 'Houstan Texans', 'AFC', 'South', 3, 5, 0, -31, 21, '1W', ''),
-(11, 'JAC', 'Jacksonville Jaguars', 'AFC', 'South', 2, 6, 0, -65, 20, '1L', ''),
-(12, 'TEN', 'Tennesse Titans', 'AFC', 'South', 2, 6, 0, -28, 19, '1W', ''),
-(13, 'DEN', 'Denver Broncos', 'AFC', 'West', 7, 1, 0, 53, 19, '1L', ''),
-(14, 'OAK', 'Oakland Raiders', 'AFC', 'West', 4, 4, 0, 2, 25, '1L', ''),
-(15, 'KC', 'Kansas City Chiefs', 'AFC', 'West', 3, 5, 0, 13, 21, '2W', ''),
-(16, 'SD', 'San Diego Chargers', 'AFC', 'West', 2, 7, 0, -39, 23, '5L', ''),
-(17, 'NYG', 'New York Giants', 'NFC', 'East', 5, 4, 0, 21, 27, '1W', ''),
-(18, 'PHI', 'Philadelphia Eagles', 'NFC', 'East', 4, 4, 0, 29, 22, '1W', ''),
-(19, 'WAS', 'Washington Redskins', 'NFC', 'East', 3, 5, 0, -37, 17, '1L', ''),
-(20, 'DAL', 'Dallas Cowboys', 'NFC', 'East', 2, 6, 0, -44, 16, '6L', ''),
-(21, 'GB', 'Green Bay Packers', 'NFC', 'North', 6, 2, 0, 36, 24, '2L', ''),
-(22, 'MIN', 'Minnesota Vikings', 'NFC', 'North', 6, 2, 0, 28, 16, '4W', ''),
-(23, 'CHI', 'Chicago Bears', 'NFC', 'North', 3, 5, 0, -59, 16, '1W', ''),
-(24, 'DET', 'Detroit Lions', 'NFC', 'North', 1, 7, 0, -96, 18, '2L', ''),
-(25, 'CAR', 'Carolina Panthers', 'NFC', 'South', 8, 0, 0, 63, 26, '8W', ''),
-(26, 'ATL', 'Atlanta Falcons', 'NFC', 'South', 6, 3, 0, -27, 31, '2L', ''),
-(27, 'NO', 'New Orleans Saints', 'NFC', 'South', 4, 5, 0, -27, 31, '1L', ''),
-(28, 'TB', 'Tampa Bay Buccaneers', 'NFC', 'South', 3, 5, 0, -50, 18, '1L', ''),
-(29, 'ARI', 'Arizona Cardinals', 'NFC', 'West', 6, 2, 0, 110, 32, '2W', ''),
-(30, 'STL', 'St. Louis Rams', 'NFC', 'West', 4, 4, 0, 27, 16, '2W', ''),
-(31, 'SEA', 'Seattle Seahawks', 'NFC', 'West', 4, 4, 0, 27, 16, '2W', ''),
-(32, 'SF', 'San Francisco 49ers', 'NFC', 'West', 3, 6, 0, -97, 12, '1W', '');
+INSERT INTO `league` (`id`, `code`, `name`, `conf`, `div`, `wins`, `loses`, `ties`, `netPts`, `touchdowns`, `streak`) VALUES
+(1, 'NE', 'New England Patriots', 'AFC', 'East', 8, 0, 0, 133, 31, '8W'),
+(2, 'NYJ', 'New York Jets', 'AFC', 'East', 5, 3, 0, 38, 23, '1W'),
+(3, 'BUF', 'Buffalo Bills', 'AFC', 'East', 4, 4, 0, 19, 26, '1W'),
+(4, 'MIA', 'Miami Dolphins', 'AFC', 'East', 3, 5, 0, -35, 22, '2L'),
+(5, 'CIN', 'Cincinnati Bengals', 'AFC', 'North', 8, 0, 0, 87, 28, '8W'),
+(6, 'PIT', 'Pittsburgh Steelers', 'AFC', 'North', 5, 4, 0, 87, 28, '8W'),
+(7, 'BAL', 'Baltimore Ravens', 'AFC', 'North', 2, 6, 0, -24, 19, '1W'),
+(8, 'CLE', 'Cleveland Browns', 'AFC', 'North', 2, 7, 0, -70, 19, '4L'),
+(9, 'IND', 'Indianapolis Colts', 'AFC', 'South', 4, 5, 0, -27, 24, '1W'),
+(10, 'HOU', 'Houstan Texans', 'AFC', 'South', 3, 5, 0, -31, 21, '1W'),
+(11, 'JAC', 'Jacksonville Jaguars', 'AFC', 'South', 2, 6, 0, -65, 20, '1L'),
+(12, 'TEN', 'Tennesse Titans', 'AFC', 'South', 2, 6, 0, -28, 19, '1W'),
+(13, 'DEN', 'Denver Broncos', 'AFC', 'West', 7, 1, 0, 53, 19, '1L'),
+(14, 'OAK', 'Oakland Raiders', 'AFC', 'West', 4, 4, 0, 2, 25, '1L'),
+(15, 'KC', 'Kansas City Chiefs', 'AFC', 'West', 3, 5, 0, 13, 21, '2W'),
+(16, 'SD', 'San Diego Chargers', 'AFC', 'West', 2, 7, 0, -39, 23, '5L'),
+(17, 'NYG', 'New York Giants', 'NFC', 'East', 5, 4, 0, 21, 27, '1W'),
+(18, 'PHI', 'Philadelphia Eagles', 'NFC', 'East', 4, 4, 0, 29, 22, '1W'),
+(19, 'WAS', 'Washington Redskins', 'NFC', 'East', 3, 5, 0, -37, 17, '1L'),
+(20, 'DAL', 'Dallas Cowboys', 'NFC', 'East', 2, 6, 0, -44, 16, '6L'),
+(21, 'GB', 'Green Bay Packers', 'NFC', 'North', 6, 2, 0, 36, 24, '2L'),
+(22, 'MIN', 'Minnesota Vikings', 'NFC', 'North', 6, 2, 0, 28, 16, '4W'),
+(23, 'CHI', 'Chicago Bears', 'NFC', 'North', 3, 5, 0, -59, 16, '1W'),
+(24, 'DET', 'Detroit Lions', 'NFC', 'North', 1, 7, 0, -96, 18, '2L'),
+(25, 'CAR', 'Carolina Panthers', 'NFC', 'South', 8, 0, 0, 63, 26, '8W'),
+(26, 'ATL', 'Atlanta Falcons', 'NFC', 'South', 6, 3, 0, -27, 31, '2L'),
+(27, 'NO', 'New Orleans Saints', 'NFC', 'South', 4, 5, 0, -27, 31, '1L'),
+(28, 'TB', 'Tampa Bay Buccaneers', 'NFC', 'South', 3, 5, 0, -50, 18, '1L'),
+(29, 'ARI', 'Arizona Cardinals', 'NFC', 'West', 6, 2, 0, 110, 32, '2W'),
+(30, 'STL', 'St. Louis Rams', 'NFC', 'West', 4, 4, 0, 27, 16, '2W'),
+(31, 'SEA', 'Seattle Seahawks', 'NFC', 'West', 4, 4, 0, 27, 16, '2W'),
+(32, 'SF', 'San Francisco 49ers', 'NFC', 'West', 3, 6, 0, -97, 12, '1W');
 
 -- --------------------------------------------------------
 
@@ -115,31 +131,31 @@ CREATE TABLE IF NOT EXISTS `players` (
 --
 
 INSERT INTO `players` (`id`, `name`, `pos`, `num`, `age`, `mug`) VALUES
-(1, 'Anderson, C.J.', 'RB', 22, 24, ''),
-(2, 'Anunike, Kenny', 'DE', 91, 25, ''),
-(3, 'Barrett, Shaquil', 'OLB', 48, 22, ''),
-(4, 'Bolden, Omar', 'S', 33, 26, ''),
-(5, 'Brewer, Aaron', 'LS', 46, 25, ''),
-(6, 'Bruton Jr., David', 'S', 30, 28, ''),
-(7, 'Caldwell, Andre', 'WR', 12, 30, ''),
-(8, 'Casey, James', 'TE/FB', 80, 31, ''),
-(9, 'Colquitt, Britton', 'P', 4, 30, ''),
-(10, 'Daniels, Owen', 'TE', 81, 32, ''),
-(11, 'Davis, Todd', 'ILB', 51, 23, ''),
-(12, 'Doss, Lorenzo', 'CB', 37, 21, ''),
-(13, 'Ferentz, James', 'C', 53, 26, ''),
-(14, 'Fowler, Bennie', 'WR', 16, 24, ''),
-(15, 'Garcia, Max', 'C/G', 73, 23, ''),
-(16, 'Green, Virgil', 'TE', 85, 26, ''),
-(17, 'Harris Jr., Chris', 'CB', 25, 26, ''),
-(18, 'Harris, Ryan', 'T', 61, 30, ''),
-(19, 'Henry, Mitchell', 'TE', 84, 22, ''),
-(20, 'Hillman, Ronnie', 'RB', 23, 24, ''),
-(21, 'Jackson, Malik', 'DE', 91, 25, ''),
-(22, 'Kilgo, Darius', 'NT', 98, 23, ''),
-(23, 'Latimer, Cody', 'WR', 14, 23, ''),
-(24, 'Manning, Peyton', 'QB', 18, 39, ''),
-(25, 'Marshall, Brandon', 'ILB', 54, 26, '');
+(1, 'Anderson, C.J.', 'RB', 22, 24, 'anderson.png'),
+(2, 'Anunike, Kenny', 'DE', 91, 25, 'anunike.png'),
+(3, 'Barrett, Shaquil', 'OLB', 48, 22, 'barrett.png'),
+(4, 'Bolden, Omar', 'S', 33, 26, 'bolden.png'),
+(5, 'Brewer, Aaron', 'LS', 46, 25, 'brewer.png'),
+(6, 'Bruton Jr., David', 'S', 30, 28, 'brutonjr.png'),
+(7, 'Caldwell, Andre', 'WR', 12, 30, 'caldwell.png'),
+(8, 'Casey, James', 'TE/FB', 80, 31, 'casey.png'),
+(9, 'Colquitt, Britton', 'P', 4, 30, 'colquitt.png'),
+(10, 'Daniels, Owen', 'TE', 81, 32, 'daniels.png'),
+(11, 'Davis, Todd', 'ILB', 51, 23, 'davis.png'),
+(12, 'Doss, Lorenzo', 'CB', 37, 21, 'doss.png'),
+(13, 'Ferentz, James', 'C', 53, 26, 'ferentz.png'),
+(14, 'Fowler, Bennie', 'WR', 16, 24, 'fowler.png'),
+(15, 'Garcia, Max', 'C/G', 73, 23, 'garcia.png'),
+(16, 'Green, Virgil', 'TE', 85, 26, 'green.png'),
+(17, 'Harris Jr., Chris', 'CB', 25, 26, 'harrisjr.png'),
+(18, 'Harris, Ryan', 'T', 61, 30, 'harris.png'),
+(19, 'Henry, Mitchell', 'TE', 84, 22, 'henry.png'),
+(20, 'Hillman, Ronnie', 'RB', 23, 24, 'hillman.png'),
+(21, 'Jackson, Malik', 'DE', 91, 25, 'jackson.png'),
+(22, 'Kilgo, Darius', 'NT', 98, 23, 'kilgo.png'),
+(23, 'Latimer, Cody', 'WR', 14, 23, 'latimer.png'),
+(24, 'Manning, Peyton', 'QB', 18, 39, 'manning.png'),
+(25, 'Marshall, Brandon', 'ILB', 54, 26, 'marshall.png');
 
 --
 -- Indexes for dumped tables
