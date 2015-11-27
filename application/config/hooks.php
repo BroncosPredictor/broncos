@@ -16,5 +16,7 @@ $hook['post_controller_constructor'][] = array(
                                 'function' => 'initializeData',
                                 'filename' => 'SessionInit.php',
                                 'filepath' => 'hooks',
-                                'params'   => array( 'editing' => false )
+                                'params'   => array( 'editing' => false
+                                                   , 'standingLayout' => 'Division'
+                                                   , 'standingOrder' => 'bogus' )
                                 );

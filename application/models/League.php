@@ -6,6 +6,7 @@
  */
 class League extends MY_Model
 {
+    /*
     var $data = array(
         array( 'id' => '1',  'code' => 'MIA', 'name' => 'Miami Dolphins',       'conf' => 'AFC', 'group' => 'East',  'wins' => '1', 'loses' => '2', 'ties' => '0', 'netPts' => '-23', 'touchdowns' => '6',  'streak' => '2L' ),
         array( 'id' => '2',  'code' => 'BUF', 'name' => 'Buffalo Bills',        'conf' => 'AFC', 'group' => 'East',  'wins' => '2', 'loses' => '1', 'ties' => '0', 'netPts' => '32',  'touchdowns' => '13', 'streak' => '1W' ),
@@ -40,6 +41,7 @@ class League extends MY_Model
         array( 'id' => '31', 'code' => 'SEA', 'name' => 'Seattle Seahawks',     'conf' => 'NFC', 'group' => 'West',  'wins' => '1', 'loses' => '2', 'ties' => '0', 'netPts' => '13',  'touchdowns' => '7',  'streak' => '1W' ),
         array( 'id' => '32', 'code' => 'ARI', 'name' => 'Arizona Cardinals',    'conf' => 'NFC', 'group' => 'West',  'wins' => '3', 'loses' => '0', 'ties' => '0', 'netPts' => '77',  'touchdowns' => '17', 'streak' => '3W' )
     );
+     */
     
     public function __construct()
     {
