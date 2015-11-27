@@ -18,10 +18,24 @@ class Standing extends Application
     
     function __construct() {
         parent::__construct();
-        $this->layoutOptions = array( 'Division', 'Conference', 'League' );
-        $this->orderOptions = array( 'bogus' );
+        $this->layoutOptions = array( 'League', 'Conference', 'Division' );
+        $this->orderOptions = array( 'City', 'Team', 'Net Points' );
     }
     
+    static function cmp( $a, $b )
+    {
+        switch( $_SESSION['standingOrder'] )
+        {
+        case 'City':
+            return strcmp( $a->name, $b->name );
+        case 'Team':
+            $a = preg_split( '/\s/', $a->name );
+            $b = preg_split( '/\s/', $b->name );
+            return strcmp( end( $a ), end( $b ) );
+        case 'Net Points':
+            return $b->netPts - $a->netPts;
+        }
+    }
     
     function index() {
         $this->data['pageTitle'] = 'Standing'; // use the standing page title
@@ -48,7 +62,9 @@ class Standing extends Application
         
         if( $_SESSION['standingLayout'] == 'League' )
         {
-            $this->data['teams'] = $this->league->all();
+            $teamData = $this->league->all();
+            usort( $teamData, 'Standing::cmp' );
+            $this->data['teams'] = $teamData;
         }
         else
         {
@@ -64,10 +80,12 @@ class Standing extends Application
                     // iterate over available Groups
                     foreach( $this->league->getGroups() as $group )
                     {
+                        $teamData = $this->league->getByConfGroup( $conf, $group );
+                        usort( $teamData, 'Standing::cmp' );
                         // append info about current group
                         $groupData[] = array( 'group' => $group
                                               // retreives data about the teams that are in the current conf and current group
-                                            , 'teams' => $this->league->getByConfGroup( $conf, $group ) );
+                                            , 'teams' => $teamData );
                     }
                     // append groups data to current conference
                     $this->data['conferences'][] = array( 'conference' => $conf
@@ -75,8 +93,10 @@ class Standing extends Application
                 }
                 else if( $_SESSION['standingLayout'] == 'Conference' )
                 {
+                    $teamData = $this->league->getByConf( $conf );
+                    usort( $teamData, 'Standing::cmp' );
                     $this->data['conferences'][] = array( 'conference' => $conf
-                                                        , 'teams' => $this->league->getByConf( $conf ) );
+                                                        , 'teams' => $teamData );
                 }
                 
             }
@@ -96,8 +116,8 @@ class Standing extends Application
         $_SESSION['standingLayout'] = $layout;
         
         // gets value for order and stores in session variable
-        //$order = $this->input->post('order');
-        //$this->session->set_userdata('rosterOrder', $order);
+        $order = $this->input->post('order');
+        $_SESSION['standingOrder'] = $order;
         
         redirect('/standing');
     }
