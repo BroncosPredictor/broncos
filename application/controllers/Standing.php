@@ -15,11 +15,13 @@ class Standing extends Application
 {
     var $layoutOptions;
     var $orderOptions;
+    var $dataSourceOptions;
     
     function __construct() {
         parent::__construct();
         $this->layoutOptions = array( 'League', 'Conference', 'Division' );
         $this->orderOptions = array( 'City', 'Team', 'Net Points' );
+        $this->dataSourceOptions = array( 'Database', 'Remote Server' );
     }
     
     static function cmp( $a, $b )
@@ -37,28 +39,25 @@ class Standing extends Application
         }
     }
     
+    function buildOptions( $optName, $optList, $sessionVar )
+    {
+        $this->data[ $optName ] = array();
+        foreach( $optList as $value )
+        {
+            $this->data[ $optName ][] = array(
+                'optValue' => $value
+              , 'optSelected' => ( $_SESSION[ $sessionVar ] == $value ? 'selected' : '' )
+            );
+        }
+    }
+    
     function index() {
         $this->data['pageTitle'] = 'Standing'; // use the standing page title
         $this->data['pagebody'] = 'standing'; // show the standing view
         
-        $this->data['standingLayoutOpts'] = array();
-        foreach( $this->layoutOptions as $value )
-        {
-            $this->data['standingLayoutOpts'][] = array(
-                'optValue' => $value
-              , 'optSelected' => ( $_SESSION['standingLayout'] == $value ? 'selected' : '' )
-            );
-        }
-        
-        
-        $this->data['standingOrderOpts'] = array();
-        foreach( $this->orderOptions as $value )
-        {
-            $this->data['standingOrderOpts'][] = array(
-                'optValue' => $value
-              , 'optSelected' => ( $_SESSION['standingOrder'] == $value ? 'selected' : '' )
-            );
-        }
+        $this->buildOptions( 'standingLayoutOpts', $this->layoutOptions, 'standingLayout' );
+        $this->buildOptions( 'standingOrderOpts', $this->orderOptions, 'standingOrder' );
+        $this->buildOptions( 'dataSourceOpts', $this->dataSourceOptions, 'standingDataSource' );
         
         if( $_SESSION['standingLayout'] == 'League' )
         {
@@ -118,6 +117,10 @@ class Standing extends Application
         // gets value for order and stores in session variable
         $order = $this->input->post('order');
         $_SESSION['standingOrder'] = $order;
+        
+        // gets value for data source and stores in session variable
+        $dataSource = $this->input->post('dataSource');
+        $_SESSION['standingDataSource'] = $dataSource;
         
         redirect('/standing');
     }

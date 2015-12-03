@@ -48,6 +48,44 @@ class League extends MY_Model
         parent::__construct();
     }
     
+    public function all()
+    {
+        if( $_SESSION['standingDataSource'] == 'Remote Server' )
+        {
+            $xmlStr = file_get_contents( 'http://nfl.jlparry.com/standings' );
+            $standings = simplexml_load_string( $xmlStr );
+            return League::translateXML( $standings );
+        }
+        else
+            return parent::all();
+    }
+    
+    private static function translateXML( $simpleXML )
+    {
+        $data = array();
+        $curID = 1;
+        foreach( $simpleXML->team as $team )
+        {
+            $dataElement = new stdClass();
+            $dataElement->id     = $curID++;
+            $dataElement->code   = $team['code'];
+            $dataElement->name   = $team->fullname;
+            $dataElement->conf   = $team['conference'];
+            $divStr = (string)$team['division'];
+            $dataElement->group  = $divStr [2] == 'N' ? 'North'
+                                 : $divStr [2] == 'S' ? 'South'
+                                 : $divStr [2] == 'E' ? 'East'
+                                 : $divStr [2] == 'W' ? 'West' : 'N/A';
+            $dataElement->wins   = $team->totals->wins;
+            $dataElement->loses  = $team->totals->losses;
+            $dataElement->ties   = $team->totals->ties != null ? $team->totals->ties : '0';
+            $dataElement->netPts = $team->totals->net;
+            $dataElement->streak = $team->recent->streak;
+            $dataElement->touchdowns = 'N/A';
+            $data[] = $dataElement;
+       }
+       return $data;
+    }
     
     public function getByConf( $conf )
     {
@@ -62,7 +100,7 @@ class League extends MY_Model
     {
         $records = array();
         foreach( $this->all() as $record )
-            if( $record->conf == $conf && $record->div == $group )
+            if( $record->conf == $conf && $record->group == $group )
                 $records[] = $record;
         return $records;
     }

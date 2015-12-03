@@ -18,5 +18,6 @@ $hook['post_controller_constructor'][] = array(
                                 'filepath' => 'hooks',
                                 'params'   => array( 'editing' => false
                                                    , 'standingLayout' => 'Division'
-                                                   , 'standingOrder' => 'Net Points' )
+                                                   , 'standingOrder' => 'Net Points'
+                                                   , 'standingDataSource' => 'Database' )
                                 );
