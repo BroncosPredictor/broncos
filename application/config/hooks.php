@@ -21,3 +21,10 @@ $hook['post_controller_constructor'][] = array(
                                                    , 'standingOrder' => 'Net Points'
                                                    , 'standingDataSource' => 'Database' )
                                 );
+
+$hook['post_controller'][] = array(
+                                'class'    => 'League',
+                                'function' => 'clearCache',
+                                'filename' => 'League.php',
+                                'filepath' => 'models',
+                                'params'   => array() );

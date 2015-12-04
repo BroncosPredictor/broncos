@@ -43,45 +43,62 @@ class League extends MY_Model
     );
      */
     
+    var $cache;
+    
     public function __construct()
     {
         parent::__construct();
+        $this->cache = NULL;
     }
     
     public function all()
     {
+        if( $this->cache != NULL )
+            return $this->cache;
+        
         if( $_SESSION['standingDataSource'] == 'Remote Server' )
         {
             $xmlStr = file_get_contents( 'http://nfl.jlparry.com/standings' );
-            $standings = simplexml_load_string( $xmlStr );
-            return League::translateXML( $standings );
+            $this->cache = League::translateXML( $xmlStr );
         }
         else
-            return parent::all();
+        {
+            $this->cache = parent::all();
+        }
+        
+        return $this->cache;
     }
     
-    private static function translateXML( $simpleXML )
+    public function clearCache()
     {
+        $this->cache = NULL;
+    }
+    
+    private static function translateXML( $xmlStr )
+    {
+        
+        $standings = simplexml_load_string( $xmlStr );
         $data = array();
         $curID = 1;
-        foreach( $simpleXML->team as $team )
+        foreach( $standings->team as $team )
         {
             $dataElement = new stdClass();
             $dataElement->id     = $curID++;
             $dataElement->code   = $team['code'];
             $dataElement->name   = $team->fullname;
             $dataElement->conf   = $team['conference'];
-            $divStr = (string)$team['division'];
-            $dataElement->group  = $divStr [2] == 'N' ? 'North'
-                                 : $divStr [2] == 'S' ? 'South'
-                                 : $divStr [2] == 'E' ? 'East'
-                                 : $divStr [2] == 'W' ? 'West' : 'N/A';
+            $divStr = mb_substr($team['division'], 2, 1);
+            foreach( League::getGroups() as $group )
+            {
+                if(strncasecmp( $divStr, $group, 1 ) == 0 )
+                   $dataElement->div = $group;
+            }
             $dataElement->wins   = $team->totals->wins;
             $dataElement->loses  = $team->totals->losses;
             $dataElement->ties   = $team->totals->ties != null ? $team->totals->ties : '0';
             $dataElement->netPts = $team->totals->net;
-            $dataElement->streak = $team->recent->streak;
-            $dataElement->touchdowns = 'N/A';
+            $dataElement->streak = '-';
+            $dataElement->touchdowns = '-';
             $data[] = $dataElement;
        }
        return $data;
@@ -100,17 +117,17 @@ class League extends MY_Model
     {
         $records = array();
         foreach( $this->all() as $record )
-            if( $record->conf == $conf && $record->group == $group )
+            if( $record->conf == $conf && $record->div == $group )
                 $records[] = $record;
         return $records;
     }
     
-    public function getConferences()
+    public static function getConferences()
     {
         return array( 'AFC', 'NFC' );
     }
     
-    public function getGroups()
+    public static function getGroups()
     {
         return array( 'East', 'North', 'South', 'West' );
     }
