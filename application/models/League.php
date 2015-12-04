@@ -51,6 +51,87 @@ class League extends MY_Model
         $this->cache = NULL;
     }
     
+    static function cmp( $a, $b )
+    {
+        return intval( $b->date ) - intval( $a->date );
+    }
+    
+    public function recalculate()
+    {
+        $this->load->model('history');
+        $games = $this->history->all();
+        usort( $games, 'League::cmp' );
+        
+        $teams = parent::all();
+        
+        foreach( $teams as $team )
+        {
+            $for = 0;
+            $against = 0;
+            $wins = 0;
+            $losses = 0;
+            $ties = 0;
+            $streak = 0;
+            $streakType = 'None';
+            
+            foreach( $games as $game )
+            {
+                if( $game->home == $team->code )
+                {
+                    $for += $game->homePts;
+                    $against += $game->awayPts;
+                    $gameOutcome = $game->homePts - $game->awayPts;
+                }
+                
+                if( $game->away == $team->code )
+                {
+                    $for += $game->awayPts;
+                    $against += $game->homePts;
+                    $gameOutcome = $game->awayPts - $game->homePts;
+                }
+                
+                if( $game->home == $team->code || $game->away == $team->code  )
+                {
+                    if( $gameOutcome > 0 )
+                        $gameOutcome = 'Win';
+                    else if( $gameOutcome < 0 )
+                        $gameOutcome = 'Loss';
+                    else
+                        $gameOutcome = 'Tie';
+                    
+                    if( $streakType == 'None' )
+                        $streakType = $gameOutcome;
+                    
+                    switch( $gameOutcome )
+                    {
+                        case 'Win':
+                            ++$wins;
+                            break;
+                        case 'Loss':
+                            ++$losses;
+                            break;
+                        case 'Tie':
+                            ++$ties;
+                    }
+                    
+                    if( $streakType == $gameOutcome )
+                        ++$streak;
+                    else
+                        $streakType = substr( $streakType, 0, 1 );
+                }
+            }
+            $streakType = substr( $streakType, 0, 1 );
+            
+            $team->netPts = $for - $against;
+            $team->wins   = $wins;
+            $team->loses  = $losses;
+            $team->ties   = $ties;
+            $team->streak = $streakType . $streak;
+            
+            $this->update( $team );
+        }
+    }
+    
     public function all()
     {
         if( $this->cache != NULL )
@@ -98,7 +179,6 @@ class League extends MY_Model
             $dataElement->ties   = $team->totals->ties != null ? $team->totals->ties : '0';
             $dataElement->netPts = $team->totals->net;
             $dataElement->streak = '-';
-            $dataElement->touchdowns = '-';
             $data[] = $dataElement;
        }
        return $data;

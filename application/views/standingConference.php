@@ -8,7 +8,6 @@
             <td>{loses}</td>
             <td>{ties}</td>
             <td>{netPts}</td>
-            <td>{touchdowns}</td>
             <td>{streak}</td>
         </tr>
         {/teams}
