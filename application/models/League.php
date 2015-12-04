@@ -6,6 +6,7 @@
  */
 class League extends MY_Model
 {
+    /*
     var $data = array(
         array( 'id' => '1',  'code' => 'MIA', 'name' => 'Miami Dolphins',       'conf' => 'AFC', 'group' => 'East',  'wins' => '1', 'loses' => '2', 'ties' => '0', 'netPts' => '-23', 'touchdowns' => '6',  'streak' => '2L' ),
         array( 'id' => '2',  'code' => 'BUF', 'name' => 'Buffalo Bills',        'conf' => 'AFC', 'group' => 'East',  'wins' => '2', 'loses' => '1', 'ties' => '0', 'netPts' => '32',  'touchdowns' => '13', 'streak' => '1W' ),
@@ -40,12 +41,68 @@ class League extends MY_Model
         array( 'id' => '31', 'code' => 'SEA', 'name' => 'Seattle Seahawks',     'conf' => 'NFC', 'group' => 'West',  'wins' => '1', 'loses' => '2', 'ties' => '0', 'netPts' => '13',  'touchdowns' => '7',  'streak' => '1W' ),
         array( 'id' => '32', 'code' => 'ARI', 'name' => 'Arizona Cardinals',    'conf' => 'NFC', 'group' => 'West',  'wins' => '3', 'loses' => '0', 'ties' => '0', 'netPts' => '77',  'touchdowns' => '17', 'streak' => '3W' )
     );
+     */
+    
+    var $cache;
     
     public function __construct()
     {
         parent::__construct();
+        $this->cache = NULL;
     }
     
+    public function all()
+    {
+        if( $this->cache != NULL )
+            return $this->cache;
+        
+        if( $_SESSION['standingDataSource'] == 'Remote Server' )
+        {
+            $xmlStr = file_get_contents( 'http://nfl.jlparry.com/standings' );
+            $this->cache = League::translateXML( $xmlStr );
+        }
+        else
+        {
+            $this->cache = parent::all();
+        }
+        
+        return $this->cache;
+    }
+    
+    public function clearCache()
+    {
+        $this->cache = NULL;
+    }
+    
+    private static function translateXML( $xmlStr )
+    {
+        
+        $standings = simplexml_load_string( $xmlStr );
+        $data = array();
+        $curID = 1;
+        foreach( $standings->team as $team )
+        {
+            $dataElement = new stdClass();
+            $dataElement->id     = $curID++;
+            $dataElement->code   = $team['code'];
+            $dataElement->name   = $team->fullname;
+            $dataElement->conf   = $team['conference'];
+            $divStr = mb_substr($team['division'], 2, 1);
+            foreach( League::getGroups() as $group )
+            {
+                if(strncasecmp( $divStr, $group, 1 ) == 0 )
+                   $dataElement->div = $group;
+            }
+            $dataElement->wins   = $team->totals->wins;
+            $dataElement->loses  = $team->totals->losses;
+            $dataElement->ties   = $team->totals->ties != null ? $team->totals->ties : '0';
+            $dataElement->netPts = $team->totals->net;
+            $dataElement->streak = '-';
+            $dataElement->touchdowns = '-';
+            $data[] = $dataElement;
+       }
+       return $data;
+    }
     
     public function getByConf( $conf )
     {
@@ -65,12 +122,12 @@ class League extends MY_Model
         return $records;
     }
     
-    public function getConferences()
+    public static function getConferences()
     {
         return array( 'AFC', 'NFC' );
     }
     
-    public function getGroups()
+    public static function getGroups()
     {
         return array( 'East', 'North', 'South', 'West' );
     }
