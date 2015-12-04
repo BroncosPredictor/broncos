@@ -10,22 +10,6 @@ class Settings extends Application {
 
     function __construct() {
         parent::__construct();
-        $this->data['displayErr'] = 'none';
-    }
-    
-    function syncHistoryData()
-    {
-        $this->load->model('history');
-        $rpcResult = $this->history->rpcUpdate();
-        if( $rpcResult !== true )
-        {
-            $this->data['displayErr'] = 'inline';
-            $this->data['errMsg'] = $rpcResult;
-            $this->index();
-            return;
-        }
-        
-        $this->index();
     }
 
 
