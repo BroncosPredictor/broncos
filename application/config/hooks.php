@@ -16,5 +16,15 @@ $hook['post_controller_constructor'][] = array(
                                 'function' => 'initializeData',
                                 'filename' => 'SessionInit.php',
                                 'filepath' => 'hooks',
-                                'params'   => array( 'editing' => false )
+                                'params'   => array( 'editing' => false
+                                                   , 'standingLayout' => 'Division'
+                                                   , 'standingOrder' => 'Net Points'
+                                                   , 'standingDataSource' => 'Database' )
                                 );
+
+$hook['post_controller'][] = array(
+                                'class'    => 'League',
+                                'function' => 'clearCache',
+                                'filename' => 'League.php',
+                                'filepath' => 'models',
+                                'params'   => array() );
