@@ -55,7 +55,6 @@
                 <th>Loses</th>
                 <th>Ties</th>
                 <th>Net Points</th>
-                <th>Touchdowns</th>
                 <th>Streak</th>
             </tr>
         </thead>

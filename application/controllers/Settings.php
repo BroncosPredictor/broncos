@@ -24,7 +24,7 @@ class Settings extends Application {
             $this->index();
             return;
         }
-        
+        $this->league->recalculate();
         $this->index();
     }
 
