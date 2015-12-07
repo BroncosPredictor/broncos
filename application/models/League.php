@@ -211,4 +211,15 @@ class League extends MY_Model
     {
         return array( 'East', 'North', 'South', 'West' );
     }
+    
+    public function getPredictionTeams()
+    {
+        $this->db->select('code')->order_by('code', 'ASC');
+        $query = $this->db->get($this->_tableName)->result();
+                
+        foreach( $query as $record )
+            if( $record->code != "DEN" )
+                $records[] = $record;
+        return $records;
+    }
 }
