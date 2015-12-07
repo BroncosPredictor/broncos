@@ -31,7 +31,7 @@ class Welcome extends Application {
         
         //creates string for prediction read by app.js
         echo "Prediction: Broncos have a " . $result . "% chance of victory against " . $opponent . "<br/>";
-        echo "Formula: ((0.7 * DEN wins / total games played) + (0.2 * DEN wins / last 5 games played) + (0.1 * DEN wins / last 5 games against " . $opponent . ")) * 100";
+        echo "<br/>Formula: ((0.7 * DEN wins / total games played) + (0.2 * DEN wins / last 5 games played) + (0.1 * DEN wins / last 5 games against " . $opponent . ")) * 100";
     }
 
 }
