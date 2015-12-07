@@ -27,6 +27,8 @@ class History extends MY_Model2 {
         
         foreach( $list as $game )
             $this->add( History::translateXML( $game ) );
+        
+        return true;
     }
     
     public function add( $record )
@@ -49,12 +51,16 @@ class History extends MY_Model2 {
     private function lastUpdateDate()
     {
         $mostRecent = '20150830';
+        $almostMostRecent = $mostRecent;
         foreach( $this->all() as $record )
         {
             if( $mostRecent < $record->date )
+            {
+                $almostMostRecent = $mostRecent;
                 $mostRecent = $record->date;
-        }
-        return $mostRecent;
+            }
+        }   
+        return $almostMostRecent;
     }
     
     //calculate the probability the Broncos will win the game
