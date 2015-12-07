@@ -63,16 +63,16 @@ class History extends MY_Model2 {
         return $almostMostRecent;
     }
     
-    //calculate the 
+    //calculate the probability the Broncos will win the game
     public function predictGame($opponent)
     {
         $team = 'DEN';
         
-        $teamAverage = $this->overallAverage($team);
-        $teamLastFive = $this->lastAverage($team, 5);
-        $teamLastFiveAgainst = $this->lastAverageAgainst($team, $opponent, 5);
+        $average = $this->overallAverage($team);
+        $lastFive = $this->lastAverage($team, 5);
+        $lastFiveAgainst = $this->lastAverageAgainst($team, $opponent, 5);
         
-        $probability = ((0.7 * $teamAverage) + (0.2 * $teamLastFive) + (.1 * $teamLastFiveAgainst)) * 100;
+        $probability = ((0.7 * $average) + (0.2 * $lastFive) + (.1 * $lastFiveAgainst)) * 100;
         
         return round($probability);
     }

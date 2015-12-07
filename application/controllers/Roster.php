@@ -98,12 +98,18 @@ class Roster extends Application {
     }
     
     // called by the selection form on the roster page
-    function setSession() {
+    function setLayoutSession() {
         
         // gets value for layout and stores in session variable
         $layout = $this->input->post('layout');
         $this->session->set_userdata('rosterLayout', $layout);
         
+        redirect("/roster");
+    }
+    
+    // called by the selection form on the roster page
+    function setOrderSession() {
+       
         // gets value for order and stores in session variable
         $order = $this->input->post('order');
         $this->session->set_userdata('rosterOrder', $order);
