@@ -8,7 +8,7 @@ body { }
 a { color: navy; }
 a:hover { color: orangered; }
 
-.banner { width: 100%; }
+.banner { width: 100%; height: 250px; }
 .navbar-inner { margin: 20px 0; padding: 20px; min-height: 0; text-align: center; }
 .mynav ul { display: inline-block; list-style-type:none; margin: 0;font-size: 120%; }
 .mynav ul li { text-align:center; float:left;margin-right:15px;color:white;list-style-type:none; }
@@ -21,10 +21,12 @@ a:hover { color: orangered; }
 .rosterTable td, .leagueTable td { vertical-align: middle; }
 .rosterTable img { width: 75px; }
 
-#filterGo { margin-bottom: 10px; border: 0px solid; border-radius: 5px; background-color: navy; color: white; }
+#filterGo { margin-bottom: 10px !important; border: 0px solid; border-radius: 5px; background-color: navy; color: white; }
 #filterGo:hover { background-color: orangered; }
 
 .btn { border: 0px solid; border-radius: 5px; background-color: navy; color: white; background-image: none;}
 .btn:hover { color: white; background-color: orangered; }
 
 .addButton { width: 75px; margin: 0 auto 40px auto;}
+
+#forms { margin: 0 !important;}

@@ -1,10 +1,13 @@
 <div class="row text-center">
-    <form action="/roster/setSession" method="post">
+    <form action="/roster/setLayoutSession" method="post">
         <select name="layout">
             <option value="">Select a layout</option>
             <option value="gallery">Gallery</option>
             <option value="table">Table</option>
         </select>
+        <input type="submit" value="Go!" id="filterGo" />
+    </form>
+    <form action="/roster/setOrderSession" method="post">
         <select name="order">
             <option value="">Select an order</option>
             <option value="name">Name</option>
